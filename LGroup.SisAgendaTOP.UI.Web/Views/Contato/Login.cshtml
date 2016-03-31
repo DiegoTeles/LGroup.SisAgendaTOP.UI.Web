@@ -1,0 +1,83 @@
+﻿@model LoginMOD
+
+@{
+    Layout = null;
+    ViewBag.Title = "Sistema de Agenda de Contatos";
+    ViewBag.SubTitle = "Login";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <!--IMPORTAMOS OS SCRIPTS DO JQUERY-->
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/jquery.maskedinput.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+
+    <!--IMPORTAMOS OS SCRIPTS DO BOOTSTRAP-->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!--IMPORTAMOS AS BIBLIOTECAS DE CSS-->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.cerulean.min.css" rel="stylesheet" />
+
+    @* INSERIMOS O LOGO DAS ABAS *@
+    <link href="~/Content/images/img_LogoAbas.png" rel="shortcut icon" />
+
+</head>
+<body>
+    <header>
+        <img src="~/Content/images/img_LogoPrincipal.png" title="Logotipo da empresa" />
+
+        <hgroup class="text-center text-uppercase">
+            <h1>@ViewBag.Title</h1>
+            <h3>@ViewBag.SubTitle</h3>
+        </hgroup>
+    </header>
+    @*INSERIMOS UMA SESSÃO PARA CONTROLAR OS DISPAROS
+        DOS ALERTS/MENSAGEM*@
+    <section>
+        @if (TempData["Mensagem"] != null)
+        {
+            @Html.Partial("_PartialMensagem")
+        }    
+    </section>
+    <section class="container">
+        <fieldset>
+            <legend>@ViewBag.SubTitle</legend>
+
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    @Html.LabelFor(x=>x.Nome)
+                    @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", placeholder = "Informe o usuario", autofocus = "autofocus", required = "required" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x=>x.Senha)
+                    @Html.PasswordFor(x => x.Senha, new { @class = "form-control", placeholder = "Informe a senha", required = "required" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="logar" id="logar" value="Logar" class="btn btn-success"/>
+                </div>
+            }
+
+        </fieldset>
+    </section>
+    <footer>
+        @*STRONG: Negrito*@
+        @*MARK: Destacar*@
+        <nav class="navbar navbar-default navbar-fixed-bottom text-center text-uppercase">
+            <div class="container">
+                <p>&copy; Todos os direitos reservado ao <strong><mark>Diego Teles</mark></strong></p>
+            </div>
+        </nav>
+    </footer>
+</body>
+</html>

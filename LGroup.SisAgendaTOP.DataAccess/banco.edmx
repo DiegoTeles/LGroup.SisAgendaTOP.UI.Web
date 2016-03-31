@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="INCUBADORAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_CONTATO">
+          <Key>
+            <PropertyRef Name="ID_CONTATO" />
+          </Key>
+          <Property Name="ID_CONTATO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SEXO" Type="int" Nullable="false" />
+          <Property Name="NM_CONTATO" Type="varchar" MaxLength="50" />
+          <Property Name="DS_EMAIL" Type="varchar" MaxLength="60" />
+          <Property Name="NR_TELEFONE" Type="varchar" MaxLength="15" />
+          <Property Name="DT_NASCIMENTO" Type="datetime" />
+          <Property Name="NR_CEP" Type="varchar" MaxLength="9" />
+          <Property Name="NM_LOGRADOURO" Type="varchar" MaxLength="50" />
+          <Property Name="NM_BAIRRO" Type="varchar" MaxLength="50" />
+          <Property Name="NR_NUMERO" Type="varchar" MaxLength="10" />
+          <Property Name="DT_CADASTRO" Type="datetime" />
+          <Property Name="DT_ALTERACAO" Type="datetime" />
+          <Property Name="CD_ATIVO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TB_LOGIN">
+          <Key>
+            <PropertyRef Name="ID_LOGIN" />
+          </Key>
+          <Property Name="ID_LOGIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NM_LOGIN" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DS_SENHA" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_SEXO">
+          <Key>
+            <PropertyRef Name="ID_SEXO" />
+          </Key>
+          <Property Name="ID_SEXO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DS_SEXO" Type="varchar" MaxLength="9" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TB_CONTATO_TB_SEXO">
+          <End Role="TB_SEXO" Type="Self.TB_SEXO" Multiplicity="1" />
+          <End Role="TB_CONTATO" Type="Self.TB_CONTATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_SEXO">
+              <PropertyRef Name="ID_SEXO" />
+            </Principal>
+            <Dependent Role="TB_CONTATO">
+              <PropertyRef Name="ID_SEXO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INCUBADORAModelStoreContainer">
+          <EntitySet Name="TB_CONTATO" EntityType="Self.TB_CONTATO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_LOGIN" EntityType="Self.TB_LOGIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_SEXO" EntityType="Self.TB_SEXO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TB_CONTATO_TB_SEXO" Association="Self.FK_TB_CONTATO_TB_SEXO">
+            <End Role="TB_SEXO" EntitySet="TB_SEXO" />
+            <End Role="TB_CONTATO" EntitySet="TB_CONTATO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INCUBADORAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_CONTATO">
+          <Key>
+            <PropertyRef Name="ID_CONTATO" />
+          </Key>
+          <Property Name="ID_CONTATO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_SEXO" Type="Int32" Nullable="false" />
+          <Property Name="NM_CONTATO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DS_EMAIL" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="NR_TELEFONE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DT_NASCIMENTO" Type="DateTime" Precision="3" />
+          <Property Name="NR_CEP" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="NM_LOGRADOURO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NM_BAIRRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NR_NUMERO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DT_CADASTRO" Type="DateTime" Precision="3" />
+          <Property Name="DT_ALTERACAO" Type="DateTime" Precision="3" />
+          <Property Name="CD_ATIVO" Type="Boolean" />
+          <NavigationProperty Name="TB_SEXO" Relationship="Self.FK_TB_CONTATO_TB_SEXO" FromRole="TB_CONTATO" ToRole="TB_SEXO" />
+        </EntityType>
+        <EntityType Name="TB_LOGIN">
+          <Key>
+            <PropertyRef Name="ID_LOGIN" />
+          </Key>
+          <Property Name="ID_LOGIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NM_LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DS_SENHA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TB_SEXO">
+          <Key>
+            <PropertyRef Name="ID_SEXO" />
+          </Key>
+          <Property Name="ID_SEXO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DS_SEXO" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TB_CONTATO" Relationship="Self.FK_TB_CONTATO_TB_SEXO" FromRole="TB_SEXO" ToRole="TB_CONTATO" />
+        </EntityType>
+        <Association Name="FK_TB_CONTATO_TB_SEXO">
+          <End Role="TB_SEXO" Type="Self.TB_SEXO" Multiplicity="1" />
+          <End Role="TB_CONTATO" Type="Self.TB_CONTATO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_SEXO">
+              <PropertyRef Name="ID_SEXO" />
+            </Principal>
+            <Dependent Role="TB_CONTATO">
+              <PropertyRef Name="ID_SEXO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INCUBADORAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_CONTATO" EntityType="Self.TB_CONTATO" />
+          <EntitySet Name="TB_LOGIN" EntityType="Self.TB_LOGIN" />
+          <EntitySet Name="TB_SEXO" EntityType="Self.TB_SEXO" />
+          <AssociationSet Name="FK_TB_CONTATO_TB_SEXO" Association="Self.FK_TB_CONTATO_TB_SEXO">
+            <End Role="TB_SEXO" EntitySet="TB_SEXO" />
+            <End Role="TB_CONTATO" EntitySet="TB_CONTATO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INCUBADORAModelStoreContainer" CdmEntityContainer="INCUBADORAEntities">
+          <EntitySetMapping Name="TB_CONTATO">
+            <EntityTypeMapping TypeName="INCUBADORAModel.TB_CONTATO">
+              <MappingFragment StoreEntitySet="TB_CONTATO">
+                <ScalarProperty Name="ID_CONTATO" ColumnName="ID_CONTATO" />
+                <ScalarProperty Name="ID_SEXO" ColumnName="ID_SEXO" />
+                <ScalarProperty Name="NM_CONTATO" ColumnName="NM_CONTATO" />
+                <ScalarProperty Name="DS_EMAIL" ColumnName="DS_EMAIL" />
+                <ScalarProperty Name="NR_TELEFONE" ColumnName="NR_TELEFONE" />
+                <ScalarProperty Name="DT_NASCIMENTO" ColumnName="DT_NASCIMENTO" />
+                <ScalarProperty Name="NR_CEP" ColumnName="NR_CEP" />
+                <ScalarProperty Name="NM_LOGRADOURO" ColumnName="NM_LOGRADOURO" />
+                <ScalarProperty Name="NM_BAIRRO" ColumnName="NM_BAIRRO" />
+                <ScalarProperty Name="NR_NUMERO" ColumnName="NR_NUMERO" />
+                <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
+                <ScalarProperty Name="DT_ALTERACAO" ColumnName="DT_ALTERACAO" />
+                <ScalarProperty Name="CD_ATIVO" ColumnName="CD_ATIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_LOGIN">
+            <EntityTypeMapping TypeName="INCUBADORAModel.TB_LOGIN">
+              <MappingFragment StoreEntitySet="TB_LOGIN">
+                <ScalarProperty Name="ID_LOGIN" ColumnName="ID_LOGIN" />
+                <ScalarProperty Name="NM_LOGIN" ColumnName="NM_LOGIN" />
+                <ScalarProperty Name="DS_SENHA" ColumnName="DS_SENHA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_SEXO">
+            <EntityTypeMapping TypeName="INCUBADORAModel.TB_SEXO">
+              <MappingFragment StoreEntitySet="TB_SEXO">
+                <ScalarProperty Name="ID_SEXO" ColumnName="ID_SEXO" />
+                <ScalarProperty Name="DS_SEXO" ColumnName="DS_SEXO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

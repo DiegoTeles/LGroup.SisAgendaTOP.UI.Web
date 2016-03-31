@@ -1,0 +1,19 @@
+﻿
+@model ContatoMOD
+
+@{
+    ViewBag.Title = "Editar Contatos";
+    ViewBag.SubTitle = "Edição de Contatos";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.Partial("_PartialContato")
+
+    <div class="form-group">
+        <input type="submit" name="editar" id="editar" value="Editar" class="btn btn-warning" />
+        <input type="reset" name="limpar" id="limpar" value="Limpar" class="btn btn-primary" />
+    </div>
+}

@@ -1,0 +1,37 @@
+﻿@*ADICIONAMOS A NAMESPACE DE MODELOS
+  SUBIMOS PARA A MEMORIA
+  JUNIOR*@
+@*@using LGroup.SisAgendaTOP.Model*@
+@model ContatoMOD
+
+@{
+    //VIEWBAG = ARMAZENAR DADOS NA MEMORIA
+    //SACADINHA: UMA VEZ UTILIZADO ELE LIMPA A MEMORIA (BUNITAO)
+    ViewBag.Title = "Cadastrar Contatos";
+    ViewBag.SubTitle = "Formulário de Cadastro";
+    Layout = "~/Views/Shared/_LayoutPadrao.cshtml";
+}
+
+@*IREMOS CONSTRUIR O FORMULARIO UTILIZANDO RAZOR
+  RAZOR: HELPER DO HTML*@
+@*BeginForm: <form>*@
+@using (Html.BeginForm())
+{
+    //PARA POPULAR NOSSOS CAMPOS IREMOS UTILIZAR A LAMPDA
+    //ADAPTAMOS OS DADOS DE TELA
+    //PEQUENO => SM
+    //MEDIO => MD
+    //GRANDE => LG
+    //SEMPRE QUE UTILIZAMOS A CLASSE FORM-CONTROL
+    //DEIXA O DO CAMPO 100% (12)
+    
+    //CARREGAMOS OS CAMPOS DA TELA UTILIZANDO 
+    //O RAZOR/HELPER (PARTIAL)
+    @Html.Partial("_PartialContato")
+
+    <div class="form-group">
+        <input type="submit" name="cadastrar" id="cadastrar" value="Cadastrar" class="btn btn-success" />
+        <input type="reset" name="limpar" id="limpar" value="Limpar" class="btn btn-primary" />
+    </div>
+}
+
